@@ -1,0 +1,96 @@
+body {
+    background-color: #000;
+}
+
+#landing-header {
+    /*z-index controls the element on a 3d plane. z-index of 1 layers it on top of any image in the background*/
+    z-index: 1;
+    /*have to change the position from static (the default) to use z-index. static ignores z-index*/
+    position: relative;
+    text-align: center;
+    /* 40 view height done to center the text vertically*/
+    padding-top: 40vh
+}
+
+#landing-header h1 {
+    color: #fff;
+}
+
+.slideshow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    /*z-index puts background images to behind the text*/
+    z-index: 0;
+    /* causes no bullet points on the li*/
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* select ea/ list item inside the unordered list*/
+.slideshow li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*what allows images to take up the whole page*/
+    background-size: cover;
+    /*makes images perfectly centered*/
+    background-position: 50% 50%;
+    /*no reapting on image*/
+    background-repeat: no-repeat;
+    /*images start faded out and then fade in*/
+    opacity: 0;
+    /*background images behind text/button*/
+    z-index: 0;
+    /*how the background fades. imageAnimation is name, 50sec is how long animation lasts, linear means same speed from start to fin, infinite means it never ends*/
+    animation: imageAnimation 50s linear infinite;
+}
+
+/*what adds the background image to the li*/
+.slideshow li:nth-child(1) { 
+  background-image: url(http://i.imgur.com/K3mPv14.jpg) 
+}
+.slideshow li:nth-child(2) { 
+  background-image: url(http://i.imgur.com/SBEmFpv.jpg);
+  animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+  background-image: url(http://i.imgur.com/emvhOnb.jpg);
+  animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url(http://i.imgur.com/2LSMCmJ.jpg);
+  animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+  animation-delay: 40s; 
+}
+
+/*what we want to happen at various key frames in the image animation*/
+@keyframes imageAnimation {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
+    20% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+    }
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
